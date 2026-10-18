@@ -1,0 +1,5 @@
+SPEC.md
+_gen_images.py
+_mapas/
+__pycache__/
+*.before.css
