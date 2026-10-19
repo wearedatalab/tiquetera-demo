@@ -19,7 +19,6 @@
     root.addEventListener(type, fn);
     ctx.onLeave(() => root.removeEventListener(type, fn));
   };
-  const accessHref = (t) => '#/acceso?code=' + encodeURIComponent(t.code);
   const seatParts = (t) => {
     if (!t.seatId) return null;
     const [row, n] = String(t.seatId).split('-');
@@ -78,16 +77,15 @@
         </div>
       </div>
       <div class="bl-tk-acts">
-        <a class="btn btn-ink btn-block" href="${accessHref(t)}">${icon('scan', 18)}Probar en la puerta</a>
+        <button type="button" class="btn btn-ink btn-block" data-wallet="${esc(t.code)}">${icon('wallet', 18)}Agregar a la billetera</button>
         <div class="bl-tk-more">
-          <button type="button" class="bl-act" data-wallet="${esc(t.code)}">${icon('wallet', 17)}Agregar a la billetera</button>
           <button type="button" class="bl-act" data-send="${esc(t.code)}">${icon('send', 17)}Enviar a otra persona</button>
         </div>
         ${n === 1 ? `<div class="bl-door">
             <p class="eyebrow">Así funciona en la puerta</p>
             <ol class="bl-door-list">
               <li><span><b>Muestras el QR</b> desde el celular o impreso.</span></li>
-              <li><span><b>El escáner lo valida</b> con el API de ingreso (<span class="mono">POST /api/v1/accesos</span>) en menos de un segundo.</span></li>
+              <li><span><b>En la puerta lo escanean</b> y tu ingreso queda registrado en segundos.</span></li>
               <li><span><b>Entra una persona.</b> Si el mismo código se vuelve a leer, aparece «Ya ingresó».</span></li>
             </ol>
           </div>` : ''}
@@ -423,7 +421,7 @@
           <span class="badge ${used ? '' : 'badge-ok'}">${esc(statusTxt(t))}</span>
           <p class="bl-qs-tip">${used ? 'Esta boleta ya registró su ingreso' + (t.gate ? ' por ' + esc(t.gate) : '') + '.' : 'Sube el brillo de la pantalla al presentarla en la puerta.'}</p>
         </div>`,
-      actions: `<a class="btn btn-ink" href="${accessHref(t)}" data-close>${icon('scan', 18)}Probar en la puerta</a>${order ? `<a class="btn btn-line" href="#/boletas/${esc(order.id)}" data-close>Ver la orden</a>` : ''}`
+      actions: order ? `<a class="btn btn-line" href="#/boletas/${esc(order.id)}" data-close>Ver la orden</a>` : ''
     });
   }
 

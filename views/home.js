@@ -176,7 +176,6 @@
           <p class="hm-trust">Cada boleta lleva un QR único que se valida una sola vez en la puerta. Nadie puede comprar la boleta que otra persona está pagando. El pago se hace en PayU, Mercado Pago o ePayco.</p>
           <div class="hm-foot-row">
             <span>Demo con datos ficticios · «aforo» es una marca de ejemplo</span>
-            <a href="#/guia">Guía del demo ${icon('arrow', 15)}</a>
           </div>
         </footer>
       </div>`;

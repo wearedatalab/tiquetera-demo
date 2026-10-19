@@ -114,7 +114,6 @@
 
   window.DATA = {
     brand: { name: 'aforo', tagline: 'Boletería en línea sin doble venta' },
-    quote: { code: 'COT-2026-51' },
     colors: C,
     venues,
     events,

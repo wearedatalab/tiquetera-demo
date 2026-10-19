@@ -585,6 +585,3 @@
   .ev-howto { grid-area: howto; }
   .ev-dl > div { grid-template-columns: 150px minmax(0, 1fr); }
 }
-
-/* ---------- Guía del demo (integración): enlaces con objetivo táctil de 44 px ---------- */
-.view-guia .guide-links .btn, .view-guia .guide-foot .btn { height: 44px; padding: 0 16px; border-radius: 11px; }

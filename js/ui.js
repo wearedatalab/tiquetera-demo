@@ -174,6 +174,9 @@
 
   /* ---------- Hoja inferior (móvil) / modal centrado (escritorio) ----------
      sheet({ title, body: html, actions: html, onClose, wide }) → { el, close } */
+  const openSheets = new Set();
+  /* Cierra todas las hojas abiertas (el router lo llama al cambiar de pantalla). */
+  function closeSheets() { [...openSheets].forEach((c) => c()); }
   function sheet(opts = {}) {
     const root = document.getElementById('sheet-root');
     const wrap = document.createElement('div');
@@ -196,8 +199,10 @@
     document.addEventListener('keydown', onKey);
     wrap.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
     let closed = false;
+    openSheets.add(close);
     function close() {
       if (closed) return; closed = true;
+      openSheets.delete(close);
       document.removeEventListener('keydown', onKey);
       wrap.classList.remove('is-in');
       setTimeout(() => {
@@ -292,5 +297,5 @@
     requestAnimationFrame(step);
   }
 
-  window.UI = { esc, fmt, icon, logo, wordmark, hash, rng, pick, code, uid, toast, sheet, qr, countdown, loadScript, sleep, clamp, tween, TZ };
+  window.UI = { esc, fmt, icon, logo, wordmark, hash, rng, pick, code, uid, toast, sheet, closeSheets, qr, countdown, loadScript, sleep, clamp, tween, TZ };
 })();
